@@ -1,0 +1,128 @@
+<nav class="navbar navbar-light bg-secondary">
+    <div class="container-fluid">
+        <h1>
+            Task
+        </h1>
+        <div class="d-flex">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-target="#exampleModal"
+                (click)="openPopup()">Register</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table table-bordered border-secondary">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Employee id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Hobbies</th>
+            <th scope="col">User Experiance</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of employeedata">
+            <td>{{row.id}}</td>
+            <td>{{row.firstname}}</td>
+            <td>{{row.lastname}}</td>
+            <td>{{row.emailid}}</td>
+            <td>{{row.gender}}</td>
+            <td>{{row.hobbies}}</td>
+            <td>{{row.userexperiance}}</td>
+            <td>
+                <button class="bg-danger" (click)="deleteEmployee(row)">Remove</button>
+            </td>
+
+
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title ">Register User</h4>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formvalue">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">First Name</label>
+                        <input type="text" formControlName="firstname" class="form-control" id="exampleInputFirstName"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                        <input type="text" formControlName="lastname" class="form-control" id="exampleInputLastName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword2" class="form-label">Email Id</label>
+                        <input type="text" value="emailid" formControlName="emailid" class="form-control"
+                            id="exampleInputemailid">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword3" class="form-label">Password</label>
+                        <input type="password" formControlName="password" value="password" class="form-control"
+                            id="exampleInputPassword">
+                    </div>
+                    <div>Gender</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="male"
+                            id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="gender" value="female" type="radio"
+                            name="gender" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Female
+                        </label>
+                    </div><br>
+                    <div>Hobbies
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" formControlName="hobbies" type="checkbox"
+                                    value="singing" aria-label="...">
+                                Singing
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" formControlName="hobbies" type="checkbox"
+                                    value="dancing" aria-label="...">
+                                Dancing
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" formControlName="hobbies" type="checkbox"
+                                    value="reading" aria-label="...">
+                                Reading
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" formControlName="hobbies" type="checkbox"
+                                    value="writing" aria-label="...">
+                                Writing
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave Your Experiance" id="floatingTextarea"
+                            formControlName="userexperiance"></textarea>
+                        <label for="floatingTextarea">User Experiance</label>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-danger" (click)="closePopup()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" (click)="postEmployeeDetails()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
